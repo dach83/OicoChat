@@ -12,7 +12,13 @@ class ChatViewModel(
     private val repository: QuotesRepository
 ) : ViewModel() {
 
-    val quotesPagingFlow = Pager(PagingConfig(pageSize = DEFAULT_PAGE_SIZE)) {
+    // no more than 10 messages from the server at a time
+    private val pagingConfig = PagingConfig(
+        pageSize = DEFAULT_PAGE_SIZE,
+        initialLoadSize = DEFAULT_PAGE_SIZE
+    )
+
+    val quotesPagingFlow = Pager(pagingConfig) {
         QuotesPagingSource(repository)
     }.flow.cachedIn(viewModelScope)
 

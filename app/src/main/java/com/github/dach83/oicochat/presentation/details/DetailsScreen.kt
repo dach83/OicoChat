@@ -11,13 +11,14 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun DetailsScreen(
+    quoteId: Int,
     navigator: DestinationsNavigator
 ) {
     Box(contentAlignment = Alignment.Center) {
         Button(onClick = {
             navigator.popBackStack()
         }) {
-            Text(text = "Details screen")
+            Text(text = "Details screen $quoteId")
         }
     }
 }

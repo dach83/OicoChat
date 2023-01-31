@@ -20,7 +20,7 @@ class QuotesPagingSource(
         val quotesPage = repository.quotesPage(nextPageNum, params.loadSize)
         LoadResult.Page(
             data = quotesPage.quotes,
-            prevKey = quotesPage.pageNum.minus(1).coerceAtLeast(1),
+            prevKey = if (quotesPage.pageNum > 1) quotesPage.pageNum.minus(1) else null,
             nextKey = if (quotesPage.quotes.isNotEmpty()) quotesPage.pageNum.plus(1) else null
         )
     } catch (cause: Exception) {

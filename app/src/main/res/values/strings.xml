@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">OicoChat</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="no_internet">Check internet connection</string>
+    <string name="unknown_server_response">Unknown server response</string>
+    <string name="http_error">Http error</string>
+    <string name="refresh">Refresh</string>
+    <string name="retry">Retry</string>
 </resources>
