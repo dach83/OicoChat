@@ -8,6 +8,8 @@ buildscript {
         navigation_version = '1.7.33-beta'
         paging_version = '3.1.1'
         paging_compose_version = '1.0.0-alpha17'
+        okhttp_version = '4.10.0'
+        retrofit_version = '2.9.0'
         koin_compose_version='3.4.1'
         koin_test_version='3.3.2'
         junit_version = '4.13.2'
