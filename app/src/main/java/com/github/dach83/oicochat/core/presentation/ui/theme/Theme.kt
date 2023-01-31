@@ -1,4 +1,4 @@
-package com.github.dach83.oicochat.ui.theme
+package com.github.dach83.oicochat.core.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun OicoChatTheme(
+fun Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
