@@ -1,24 +1,28 @@
 package com.github.dach83.oicochat.presentation.details
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import com.github.dach83.oicochat.presentation.chat.components.ErrorMessageAndRefreshButton
+import com.github.dach83.oicochat.presentation.chat.components.LoadingIndicator
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 @Destination
 @Composable
 fun DetailsScreen(
     quoteId: Int,
-    navigator: DestinationsNavigator
+    viewModel: DetailsViewModel = koinViewModel()
 ) {
-    Box(contentAlignment = Alignment.Center) {
-        Button(onClick = {
-            navigator.popBackStack()
-        }) {
-            Text(text = "Details screen $quoteId")
-        }
+    LaunchedEffect(key1 = quoteId) {
+        viewModel.loadDetails(quoteId)
+    }
+
+    when (val uiState = viewModel.uiState) {
+        DetailsUiState.Loading -> LoadingIndicator()
+        is DetailsUiState.Loaded -> DetailsColumn(uiState.details)
+        is DetailsUiState.Error -> ErrorMessageAndRefreshButton(
+            cause = uiState.cause,
+            onRefreshClick = { viewModel.loadDetails(quoteId) }
+        )
     }
 }
