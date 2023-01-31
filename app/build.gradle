@@ -70,6 +70,10 @@ dependencies {
     implementation "io.github.raamcosta.compose-destinations:core:$navigation_version"
     ksp "io.github.raamcosta.compose-destinations:ksp:$navigation_version"
 
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-compose:$paging_compose_version"
+
     // Debug
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
