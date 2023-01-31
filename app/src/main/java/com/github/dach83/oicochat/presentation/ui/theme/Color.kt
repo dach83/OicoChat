@@ -1,4 +1,4 @@
-package com.github.dach83.oicochat.core.presentation.ui.theme
+package com.github.dach83.oicochat.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

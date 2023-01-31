@@ -1,4 +1,4 @@
-package com.github.dach83.oicochat.core.presentation.ui.theme
+package com.github.dach83.oicochat.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
