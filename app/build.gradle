@@ -89,7 +89,6 @@ dependencies {
     // Test
     testImplementation "junit:junit:$junit_version"
     testImplementation "io.insert-koin:koin-test-junit4:$koin_test_version"
-    testImplementation "io.mockk:mockk:$mockk_version"
 
     // AndroidTest
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
