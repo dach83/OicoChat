@@ -1,8 +1,6 @@
 package com.github.dach83.oicochat.data.remote.retrofit
 
-import com.github.dach83.oicochat.models.quotesCorrectJson
-import com.github.dach83.oicochat.models.quotesInvalidJson
-import com.github.dach83.oicochat.models.testQuotes
+import com.github.dach83.oicochat.models.*
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -58,7 +56,7 @@ class RetrofitQuotesDataSourceTest {
     }
 
     @Test(expected = Exception::class)
-    fun `invalid response throw Exception`() = runTest {
+    fun `quotes invalid response throw Exception`() = runTest {
         // arrange
         val response = MockResponse()
             .setBody(quotesInvalidJson)
@@ -71,7 +69,7 @@ class RetrofitQuotesDataSourceTest {
     }
 
     @Test(expected = Exception::class)
-    fun `http error throw Exception`() = runTest {
+    fun `quotes http error throw Exception`() = runTest {
         // arrange
         val response = MockResponse()
             .setBody(quotesCorrectJson)
@@ -81,5 +79,48 @@ class RetrofitQuotesDataSourceTest {
 
         // act
         sut.quotes(limit = 2, offset = 1)
+    }
+
+    @Test
+    fun `correct response returns correct details`() = runTest {
+        // arrange
+        val response = MockResponse()
+            .setBody(detailsCorrectJson)
+            .setResponseCode(200)
+        mockWebServer.enqueue(response)
+        val sut = RetrofitQuotesDataSource(service)
+        val expected = testDetails
+
+        // act
+        val actual = sut.details(quoteId = 7)
+
+        // assert
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test(expected = Exception::class)
+    fun `details invalid response throw Exception`() = runTest {
+        // arrange
+        val response = MockResponse()
+            .setBody(quotesInvalidJson)
+            .setResponseCode(200)
+        mockWebServer.enqueue(response)
+        val sut = RetrofitQuotesDataSource(service)
+
+        // act
+        sut.details(quoteId = 7)
+    }
+
+    @Test(expected = Exception::class)
+    fun `details http error throw Exception`() = runTest {
+        // arrange
+        val response = MockResponse()
+            .setBody(quotesCorrectJson)
+            .setResponseCode(400)
+        mockWebServer.enqueue(response)
+        val sut = RetrofitQuotesDataSource(service)
+
+        // act
+        sut.details(quoteId = 2)
     }
 }
