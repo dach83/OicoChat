@@ -10,7 +10,14 @@ class FakeQuotesRepository : QuotesRepository {
 
     private var error: Exception? = null
 
+    var quotesPageCallCounter: Int = 0
+        private set
+
+    var detailsCallCounter: Int = 0
+        private set
+
     override suspend fun quotesPage(pageNum: Int, pageSize: Int): QuotesPage {
+        quotesPageCallCounter++
         error?.let { throw it }
         return QuotesPage(
             pageNum = pageNum,
@@ -19,6 +26,7 @@ class FakeQuotesRepository : QuotesRepository {
     }
 
     override suspend fun details(quoteId: Int): Details {
+        detailsCallCounter++
         error?.let { throw it }
         return testDetails
     }

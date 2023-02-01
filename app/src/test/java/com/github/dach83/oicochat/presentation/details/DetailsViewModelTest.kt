@@ -60,13 +60,14 @@ class DetailsViewModelTest {
     fun `change configuration not request same details again`() = runTest {
         // arrange
         val sut = DetailsViewModel(fakeRepository)
-        sut.loadDetails(testDetails.id)
-        advanceUntilIdle()
 
         // act
         sut.loadDetails(testDetails.id)
+        advanceUntilIdle()
+        sut.loadDetails(testDetails.id) // load same quote after device rotate
+        advanceUntilIdle()
 
         // assert
-        assertThat(sut.uiState).isEqualTo(DetailsUiState.Loaded(testDetails))
+        assertThat(fakeRepository.detailsCallCounter).isEqualTo(1)
     }
 }
