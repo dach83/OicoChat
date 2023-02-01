@@ -11,6 +11,7 @@ import com.github.dach83.oicochat.domain.model.Details
 import com.github.dach83.oicochat.domain.model.Quote
 import retrofit2.HttpException
 import retrofit2.Response
+import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 class RetrofitQuotesDataSource(
@@ -48,6 +49,7 @@ class RetrofitQuotesDataSource(
     // todo: exceptions should be handled here
     private fun handleException(cause: Throwable): Nothing = when (cause) {
         is UnknownHostException -> throw AppException(R.string.no_internet)
+        is SocketTimeoutException -> throw AppException(R.string.no_internet)
         else -> throw cause
     }
 
