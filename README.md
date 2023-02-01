@@ -13,5 +13,14 @@
 8. Учесть что тэгов может быть динамическое кол-во но не больше 20.
 
 api: 
-[Список](https://oico.app/test/?limit=10&offset=1)
-[Детали](https://oico.app/test/2)
+ - [Список](https://oico.app/test/?limit=10&offset=1)
+ - [Детали](https://oico.app/test/2)
+
+## Чат
+![Chat](demo/Chat.gif)
+
+## Детали
+![Details](demo/Details.gif)
+
+## Загрузка и ошибки
+![Loading and errors](demo/Errors.gif)
