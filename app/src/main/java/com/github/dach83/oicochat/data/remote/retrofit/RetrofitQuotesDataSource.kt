@@ -45,13 +45,13 @@ class RetrofitQuotesDataSource(
         handleHttpError(response = this)
     }
 
-    // todo: various exceptions should be handled here
+    // todo: exceptions should be handled here
     private fun handleException(cause: Throwable): Nothing = when (cause) {
         is UnknownHostException -> throw AppException(R.string.no_internet)
         else -> throw cause
     }
 
-    // todo: various http error codes should be handled here
+    // todo: http error codes should be handled here
     private fun handleHttpError(response: Response<*>): Nothing {
         throw AppException(R.string.http_error, HttpException(response))
     }

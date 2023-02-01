@@ -18,13 +18,13 @@ class DetailsViewModel(
 
     private var loadingJob: Job? = null
 
-    fun loadDetails(id: Int) {
-        if (idNotChanged(id)) return
+    fun loadDetails(quoteId: Int) {
+        if (quoteIdNotChanged(quoteId)) return
         uiState = DetailsUiState.Loading
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
             kotlin.runCatching {
-                repository.details(id)
+                repository.details(quoteId)
             }.onSuccess { detail ->
                 uiState = DetailsUiState.Loaded(detail)
             }.onFailure { cause ->
@@ -33,7 +33,7 @@ class DetailsViewModel(
         }
     }
 
-    private fun idNotChanged(id: Int): Boolean {
+    private fun quoteIdNotChanged(id: Int): Boolean {
         val state = uiState
         return (state is DetailsUiState.Loaded && state.details.id == id)
     }

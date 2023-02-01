@@ -1,4 +1,4 @@
-package com.github.dach83.oicochat.presentation.details
+package com.github.dach83.oicochat.presentation.details.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -34,12 +34,13 @@ fun DetailsColumn(details: Details) {
         Text(text = details.createdAt)
         Spacer(modifier = Modifier.height(16.dp))
         for (ind in details.tags.indices) {
-            val backgroundColor = details.colors.getOrElse(ind) {
+            val (backgroundColor, textColor) = details.colors.getOrElse(ind) {
                 TagColor.LTGRAY
-            }.toColor()
+            }.toColorsPair()
 
             Text(
                 text = details.tags[ind],
+                color = textColor,
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraLarge)
                     .background(backgroundColor)
@@ -50,13 +51,13 @@ fun DetailsColumn(details: Details) {
     }
 }
 
-private fun TagColor.toColor(): Color = when (this) {
-    TagColor.GREEN -> Color.Green
-    TagColor.RED -> Color.Red
-    TagColor.MAGENTA -> Color.Magenta
-    TagColor.DKGRAY -> Color.DarkGray
-    TagColor.BLACK -> Color.Black
-    TagColor.YELLOW -> Color.Yellow
-    TagColor.CYAN -> Color.Cyan
-    TagColor.LTGRAY -> Color.LightGray
+private fun TagColor.toColorsPair(): Pair<Color, Color> = when (this) {
+    TagColor.GREEN -> Color.Green to Color.Black
+    TagColor.RED -> Color.Red to Color.Black
+    TagColor.MAGENTA -> Color.Magenta to Color.Black
+    TagColor.DKGRAY -> Color.DarkGray to Color.White
+    TagColor.BLACK -> Color.Black to Color.White
+    TagColor.YELLOW -> Color.Yellow to Color.Black
+    TagColor.CYAN -> Color.Cyan to Color.Black
+    TagColor.LTGRAY -> Color.LightGray to Color.Black
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.github.dach83.oicochat.presentation.chat.components.ErrorMessageAndRefreshButton
 import com.github.dach83.oicochat.presentation.chat.components.LoadingIndicator
+import com.github.dach83.oicochat.presentation.details.components.DetailsColumn
 import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.koinViewModel
 
