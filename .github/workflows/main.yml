@@ -14,9 +14,11 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         
-      - name: Test
+      - name: Test         
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+          echo "Tag name from github.ref_name: ${{  github.ref }}"
+          echo "Tag json from github.ref_name: ${{  toJSON(github.ref) }}"
