@@ -1,3 +1,5 @@
+name: Action on release
+
 on:
   release:
     types: [published]
@@ -5,3 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set Up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
